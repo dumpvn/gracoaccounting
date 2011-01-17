@@ -1,0 +1,14 @@
+package com.mpe.financial.model.dao;
+
+import com.mpe.financial.model.base.BaseInvoiceDAO;
+
+
+public class InvoiceDAO extends BaseInvoiceDAO {
+
+	/**
+	 * Default constructor.  Can be used in place of getInstance()
+	 */
+	public InvoiceDAO () {}
+
+
+}
