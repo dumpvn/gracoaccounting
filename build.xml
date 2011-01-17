@@ -1,0 +1,26 @@
+<project basedir=".">
+	<property name="webinf" value="web/WEB-INF"/>
+	<property name="classpath" value="${webinf}/lib"/>
+	<target name="schemaexport">
+        <path id="class.path"> 
+            <fileset dir="${webinf}/lib"> 
+                <include name="**/*.jar" /> 
+            </fileset> 
+        </path> 		
+	    <taskdef name="schemaexport"
+	        classname="org.hibernate.tool.hbm2ddl.SchemaExportTask"
+	        classpathref="class.path"/>
+	    
+	    <schemaexport
+	        properties="hibernate.properties"
+	        quiet="no"
+	        text="no"
+	        drop="no"
+	        delimiter=";"
+	        output="schema-export.sql">
+	        <fileset dir="src">
+	            <include name="**/*.hbm"/>
+	        </fileset>
+	    </schemaexport>
+	</target>
+</project>
