@@ -1,0 +1,158 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+	<session-factory name="OCARG">
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/dbgraco?autoReconnect=true</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+
+		<property name="dialect">
+			org.hibernate.dialect.MySQLInnoDBDialect
+		</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.max_fetch_depth">1</property>
+		
+		<property name="hibernate.transaction.factory_class">
+			org.hibernate.transaction.JDBCTransactionFactory
+		</property>
+
+		<property name="hibernate.c3p0.idle_test_period">900</property>
+		<property name="hibernate.c3p0.min_size">10</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">900</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		<property name="hibernate.c3p0.acquire_increment">1</property>
+		<property name="hibernate.c3p0.validate">true</property>
+		
+		<mapping resource="com/mpe/financial/model/hbm/filter.hbm" />
+		
+		<mapping resource="com/mpe/financial/model/hbm/Role.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/View.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Users.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Organization.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/RunningNumber.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Bank.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/BankAccount.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/BankTransaction.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/BankReconcile.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ChartGroup.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ChartOfAccount.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Currency.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CurrencyExchange.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CurrencyExchangeRateType.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Customers.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomersAddress.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomersCommunication.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Item.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemCategory.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemStatus.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPriceCategory.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemUnit.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPrice.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemVendor.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemGroup.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomField.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemCustomField.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/OrganizationSetup.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Vendors.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/VendorsAddress.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/VendorsCommunication.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Warehouse.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Inventory.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Department.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/JournalType.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Tax.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/GeneralLedger.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Journal.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/JournalDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Project.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ProfitLossReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ProfitLoss3Report.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ProfitLossReportGroup.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/GeneralLedgerReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/StockOpname.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/StockOpnameDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/StockOpnameType.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Mutation.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/MutationDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ReturToVendor.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ReturToVendorDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/DeliveryOrder.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/DeliveryOrderDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomerRetur.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomerReturDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Invoice.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/InvoiceDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/InvoicePrepayment.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/InvoiceSimple.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/InvoiceSimpleDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/InvoiceSimplePrepayment.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/InvoicePolos.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/InvoicePolosDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/InvoicePolosPrepayment.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomerPayment.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomerPrepayment.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PaymentToVendor.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PrepaymentToVendor.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/SalesOrder.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/SalesOrderDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Receiving.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ReceivingDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/VendorBill.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/VendorBillDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PurchaseRequest.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PurchaseRequestDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PurchaseOrder.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PurchaseOrderDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ArAgingReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ApAgingReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ArAgingDetailReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ApAgingDetailReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/VendorBillPrepayment.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PaymentToVendorDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomerPaymentDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Location.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Salesman.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PaidCreditCard.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomerFirstBalance.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/VendorFirstBalance.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemFirstBalance.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/RekapMutationPayableReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/RekapMutationReceivableReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/RekapMutationStockReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/StockCardReport.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Degree.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/Lending.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/LendingDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/TermOfPayment.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CustomersCategory.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/VendorsCategory.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/DiscountReference.hbm" />
+		
+		<mapping resource="com/mpe/financial/model/hbm/Member.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/MemberDiscount.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PosOrder.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/PosOrderDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CreditCard.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/CreditCardDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPosReportBarangTerjual.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPosReportPenjualanGlobal.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPosReportStockPenjualanGlobalTokoCounter.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPosReportPenjualanDetail.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPosReportStockOpname.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPosReportKomisiSpg.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPosReportDetailReceivableCreditCard.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/ItemPosReportRekapReceivableCreditCard.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/TopItemSales.hbm" />
+		<mapping resource="com/mpe/financial/model/hbm/MinimumItemStock.hbm" />
+		
+		
+	</session-factory>
+</hibernate-configuration>
