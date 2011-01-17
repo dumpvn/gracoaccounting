@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+    
+    <!-- ========== Data Source Configuration =============================== -->
+    
+    <!-- ========== Form Bean Definitions ================================== -->
+    <form-beans>
+        <form-bean name="logonForm" type="com.mpe.pos.struts.form.LogonForm">
+            <form-property name="userName" type="java.lang.String" />
+            <form-property name="userPass" type="java.lang.String" />
+            <form-property name="locationId" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="posOrderForm" type="com.mpe.pos.struts.form.PosOrderForm">
+        		<form-property name="start" type="java.lang.String" />
+            <form-property name="count" type="java.lang.String" />
+            <form-property name="caller" type="java.lang.String" />
+            <form-property name="subaction" type="java.lang.String" />
+            <form-property name="posOrderId" type="java.lang.String" />
+            <form-property name="posOrderDate" type="java.lang.String" />
+            <form-property name="startTime" type="java.lang.String" />
+            <form-property name="endTime" type="java.lang.String" />
+            <form-property name="cashAmount" type="java.lang.String" />
+            <form-property name="changeAmount" type="java.lang.String" />
+            <form-property name="status" type="java.lang.String" />
+            <form-property name="discount" type="java.lang.String" />
+            <form-property name="extraDiscount" type="java.lang.String" />
+            <form-property name="posOrderNumber" type="java.lang.String" />
+            <form-property name="note" type="java.lang.String" />
+            <form-property name="isPosted" type="java.lang.String" />
+            <form-property name="paymentMethod" type="java.lang.String" />
+						<form-property name="memberId" type="java.lang.String" />
+						<form-property name="organizationId" type="java.lang.String" />
+						<form-property name="currencyId" type="java.lang.String" />
+						<form-property name="itemId" type="java.lang.String" />
+						<form-property name="itemCode" type="java.lang.String" />
+						<form-property name="itemQuantity" type="java.lang.String" />
+						<form-property name="quantity" type="java.lang.String" />
+						<form-property name="memberNumber" type="java.lang.String" />
+						<form-property name="memberFullName" type="java.lang.String" />
+						<form-property name="memberNickName" type="java.lang.String" />
+						<form-property name="memberAddress" type="java.lang.String" />
+						<form-property name="memberCity" type="java.lang.String" />
+						<form-property name="memberPostalCode" type="java.lang.String" />
+						<form-property name="memberProvince" type="java.lang.String" />
+						<form-property name="memberMobile" type="java.lang.String" />
+						<form-property name="memberTelephone" type="java.lang.String" />
+            <form-property name="memberFax" type="java.lang.String" />
+            <form-property name="memberEmail" type="java.lang.String" />
+            <form-property name="memberIsActive" type="java.lang.String" />
+            <form-property name="memberDate" type="java.lang.String" />
+            <form-property name="tax" type="java.lang.String" />
+            <form-property name="afterTax" type="java.lang.String" />
+            <form-property name="createBy" type="java.lang.String" />
+            <form-property name="createOn" type="java.lang.String" />
+            <form-property name="changeBy" type="java.lang.String" />
+            <form-property name="changeOn" type="java.lang.String" />
+            <form-property name="orderBy" type="java.lang.String" />
+            <form-property name="gotoPage" type="java.lang.String" />
+            <form-property name="gotoPage2" type="java.lang.String" />
+            <form-property name="ascDesc" type="java.lang.String" />
+            <form-property name="bankId" type="java.lang.String" />
+            <form-property name="creditCardNumber" type="java.lang.String" />
+            <form-property name="creditCardOwner" type="java.lang.String" />
+            <form-property name="locationId" type="java.lang.String" />
+	      </form-bean>      
+        
+    </form-beans>
+    
+    <!-- ========== Global Exception Definitions ============================== -->
+    <global-exceptions />
+    
+    <!-- ========== Global Forward Definitions =============================== -->
+    <global-forwards>
+        <forward name="index" path="/index.jsp" />
+        <forward name="home" path="/index.jsp" />
+        <forward name="logon_first" path="/logon_first.jsp" />
+        <forward name="wrong_page" path="/wrong_page.jsp" />
+        <forward name="error_password" path="/error_password.jsp" />
+        
+    </global-forwards>
+    
+    <!-- ========== Action Mapping Definitions =============================== -->
+    <action-mappings>
+        <action
+            attribute="logonForm"
+            input="/jsp/logon.jsp"
+            name="logonForm"
+            parameter="LOGON"
+            path="/logon"
+            scope="request"
+            type="com.mpe.pos.struts.action.LogonAction"
+            validate="false">
+            <forward name="success" path="/posOrder/form.do" redirect="true" />
+        </action>
+        <action
+        		attribute="logonForm"
+        		name="logonForm"
+            parameter="LOGONFORM"
+            path="/logon/form"
+            type="com.mpe.pos.struts.action.LogonAction"
+            validate="false">
+            <forward name="index" path="/jsp/logon.jsp" />
+        </action>
+        <action
+            parameter="LOGOFF"
+            path="/logoff"
+            type="com.mpe.pos.struts.action.LogonAction"
+            validate="false">
+            <forward name="index" path="/index.jsp" redirect="true" />
+        </action>
+        <action
+            attribute="posOrderForm"
+            name="posOrderForm"
+            parameter="FORM"
+            path="/posOrder/form"
+            scope="request"
+            type="com.mpe.pos.struts.action.PosOrderAction"
+            validate="false">
+            <forward name="form" path="/jsp/posorder_form.jsp" />
+            <forward name="form_redir" path="/posOrder/form.do" redirect="true" />
+        </action>        
+        <action
+            attribute="posOrderForm"
+            input="/jsp/posorder_form.jsp"
+            name="posOrderForm"
+            parameter="SAVE"
+            path="/posOrder/save"
+            scope="request"
+            type="com.mpe.pos.struts.action.PosOrderAction"
+            validate="false">
+            <forward name="form" path="/jsp/posorder_form.jsp" />
+            <forward name="form_redir" path="/posOrder/form.do" redirect="true" />
+            <forward name="payment_redir" path="/posOrder/paymentForm.do" redirect="true" />
+        </action>
+        <action
+            attribute="posOrderForm"
+            name="posOrderForm"
+            parameter="PAYMENTFORM"
+            path="/posOrder/paymentForm"
+            scope="request"
+            type="com.mpe.pos.struts.action.PosOrderAction"
+            validate="false">
+            <forward name="back" path="/jsp/posorder_form.jsp" />
+            <forward name="back_redir" path="/posOrder/form.do" redirect="true" />
+            <forward name="form" path="/jsp/posorder_payment_form.jsp" />
+            <forward name="form_redir" path="/posOrder/paymentForm.do" redirect="true" />
+        </action>        
+        <action
+            attribute="posOrderForm"
+            input="/jsp/posorder_payment_form.jsp"
+            name="posOrderForm"
+            parameter="PAYMENTSAVE"
+            path="/posOrder/paymentSave"
+            scope="request"
+            type="com.mpe.pos.struts.action.PosOrderAction"
+            validate="false">
+            <forward name="form_redir" path="/posOrder/form.do" redirect="true" />
+            <forward name="back_redir" path="/posOrder/paymentForm.do" redirect="true" />
+            <forward name="form" path="/jsp/posorder_payment_form.jsp" />
+        </action>
+        <action
+            attribute="posOrderForm"
+            name="posOrderForm"
+            parameter="MEMBERFORM"
+            path="/posOrder/memberForm"
+            scope="request"
+            type="com.mpe.pos.struts.action.PosOrderAction"
+            validate="false">
+            <forward name="back" path="/jsp/posorder_form.jsp" />
+            <forward name="back_redir" path="/posOrder/form.do" redirect="true" />
+            <forward name="form" path="/jsp/posorder_member_form.jsp" />
+            <forward name="form_redir" path="/posOrder/memberForm.do" redirect="true" />
+        </action>        
+        <action
+            attribute="posOrderForm"
+            input="/jsp/posorder_member_form.jsp"
+            name="posOrderForm"
+            parameter="MEMBERSAVE"
+            path="/posOrder/memberSave"
+            scope="request"
+            type="com.mpe.pos.struts.action.PosOrderAction"
+            validate="false">
+            <forward name="form_redir" path="/posOrder/form.do" redirect="true" />
+            <forward name="back_redir" path="/posOrder/memberForm.do" redirect="true" />
+        </action>
+        
+		</action-mappings>
+
+		<!-- ========== Controller Configuration ================================ -->
+    <controller maxFileSize="1M" />
+    
+    <!-- ========== Message Resources Definitions ============================ -->
+    
+    <!-- ========== Plug Ins Configuration ================================= -->
+    <message-resources parameter="resource.ApplicationResources" />
+    <!--plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml" />
+    </plug-in-->
+    
+</struts-config>
