@@ -1,0 +1,195 @@
+P.data {
+	MARGIN-LEFT: 2px; MARGIN-RIGHT: 2px
+}
+P.data2 {
+	MARGIN-LEFT: 4px; MARGIN-RIGHT: 4px
+}
+BODY {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+SELECT {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+INPUT {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+H1 {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+H2 {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+H3 {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+H4 {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+H5 {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+H6 {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+TH {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+TD {
+	FONT-SIZE: 11px; FONT-FAMILY: Arial, sans-serif
+}
+TD.titleTable {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; MARGIN: 0px; COLOR: #282828; FONT-FAMILY: Microsoft Sans Serif, Trebuchet MS, Geneva, sans-serif
+}
+TD.titleField {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: #A9ACAF; MARGIN: 0px; COLOR: #ffffff; FONT-FAMILY: Arial, Microsoft Sans Serif, Trebuchet MS, Geneva, sans-serif; TEXT-ALIGN: center
+}
+FONT.brief {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; COLOR: #0f0000; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; TEXT-ALIGN: left; FONT-VARIANT: normal
+}
+DIV.brief {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; COLOR: #0f0000; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; HEIGHT: 20px; FONT-VARIANT: normal
+}
+TD.whitebrief {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #ffffff; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; HEIGHT: 20px; FONT-VARIANT: normal
+}
+TABLE.top {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-WEIGHT: bold; FONT-SIZE: 12px; BORDER-LEFT: medium none; COLOR: #0f0000; BORDER-BOTTOM: medium none; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #cccc99
+}
+TABLE.gray {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 12px; BORDER-LEFT: medium none; COLOR: #0f0000; BORDER-BOTTOM: medium none; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #eeeeee; FONT-VARIANT: normal
+}
+TABLE.content {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 12px; BORDER-LEFT: medium none; COLOR: #0f0000; BORDER-BOTTOM: medium none; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #c7bb92; FONT-VARIANT: normal
+}
+DIV.red {
+	FONT-WEIGHT: bold; FONT-SIZE: 9px; COLOR: #990033; FONT-FAMILY: verdana, Arial, Helvetica, sans-serif
+}
+TD.activered {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Arial, Helvetica, sans-serif; HEIGHT: 20px; BACKGROUND-COLOR: #990033; valign: middle
+}
+TD.title {
+	FONT-WEIGHT: bold; FONT-SIZE: 20px; COLOR: #990033; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+FONT.title1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 20px; COLOR: #990033; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+FONT.title2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #990033; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TD.menu {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-WEIGHT: normal; FONT-SIZE: 12px; BORDER-LEFT: medium none; COLOR: #000000; BORDER-BOTTOM: medium none; FONT-STYLE: normal; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; HEIGHT: 20px; TEXT-ALIGN: left; FONT-VARIANT: normal
+}
+TD.titlePage {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; FONT-WEIGHT: bold; FONT-SIZE: 15px; PADDING-BOTTOM: 1px; COLOR: #210a7e; PADDING-TOP: 1px; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif
+}
+TD.copyright {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; FONT-WEIGHT: normal; FONT-SIZE: 10px; PADDING-BOTTOM: 1px; COLOR: #666666; PADDING-TOP: 1px; FONT-FAMILY: Arial, Helvetica, san-serif
+}
+TD.detail {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; COLOR: #0f0000; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; TEXT-ALIGN: justify; FONT-VARIANT: normal
+}
+HR.big {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 5px; PAGE-BREAK-BEFORE: auto; PADDING-BOTTOM: 2px; PAGE-BREAK-AFTER: auto; COLOR: #8f0000; PADDING-TOP: 2px; page-break-inside: auto
+}
+INPUT.normal {
+	BORDER-RIGHT: #727272 1px solid; BORDER-TOP: #727272 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #727272 1px solid; WIDTH: 150px; COLOR: #000000; BORDER-BOTTOM: #727272 1px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+INPUT.normalShort {
+	BORDER-RIGHT: #727272 1px solid; BORDER-TOP: #727272 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #727272 1px solid; WIDTH: 50px; COLOR: #000000; BORDER-BOTTOM: #727272 1px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+INPUT.cart {
+	BORDER-RIGHT: #727272 1px solid; BORDER-TOP: #727272 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #727272 1px solid; WIDTH: 80px; COLOR: #080808; BORDER-BOTTOM: #727272 1px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #acacac
+}
+INPUT.search {
+	BORDER-RIGHT: #727272 1px solid; BORDER-TOP: #727272 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #727272 1px solid; WIDTH: 150px; COLOR: #080808; BORDER-BOTTOM: #727272 1px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #acacac
+}
+INPUT.button1 {
+	BORDER-RIGHT: #137f52 2px solid; BORDER-TOP: #137f52 2px solid; FONT-WEIGHT: normal; FONT-SIZE: 12px; BORDER-LEFT: #137f52 2px solid; WIDTH: 65px; COLOR: #080808; BORDER-BOTTOM: #137f52 2px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #1a908d
+}
+INPUT.button {
+	BORDER-RIGHT: #727272 2px solid; BORDER-TOP: #727272 2px solid; FONT-WEIGHT: bold; FONT-SIZE: 12px; BORDER-LEFT: #727272 2px solid; COLOR: #080808; BORDER-BOTTOM: #727272 2px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #acacac
+}
+SELECT.normal {
+	BORDER-RIGHT: #727272 1px solid; BORDER-TOP: #727272 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #727272 1px solid; WIDTH: 150px; COLOR: #080808; BORDER-BOTTOM: #727272 1px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+SELECT.normalShort {
+	BORDER-RIGHT: #727272 1px solid; BORDER-TOP: #727272 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #727272 1px solid; COLOR: #080808; BORDER-BOTTOM: #727272 1px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+A.menu {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: Helvetica, Arial, sans-serif, verdana
+}
+A.menuActive {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #ffffff; FONT-FAMILY: Helvetica, Arial, sans-serif, verdana
+}
+A.normal {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; COLOR: #000000
+}
+DIV.arrow {
+	PADDING-RIGHT: 2px; DISPLAY: block; PADDING-LEFT: 30px; FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: url(/media/new/button/pfeil_sei_grau.gif) no-repeat 15px 5px; PADDING-BOTTOM: 2px; COLOR: #333333; PADDING-TOP: 2px
+}
+DIV.arrowActive {
+	PADDING-RIGHT: 2px; DISPLAY: block; PADDING-LEFT: 30px; FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: url(/media/new/button/pfeil_sei_weiss.gif) no-repeat 15px 5px; PADDING-BOTTOM: 2px; COLOR: #ffffff; PADDING-TOP: 2px
+}
+A.arrow {
+	PADDING-RIGHT: 2px; DISPLAY: block; PADDING-LEFT: 30px; FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: url(/media/new/button/pfeil_sei_grau.gif) no-repeat 15px 5px; PADDING-BOTTOM: 2px; COLOR: #333333; PADDING-TOP: 2px
+}
+A.arrowActive {
+	PADDING-RIGHT: 2px; DISPLAY: block; PADDING-LEFT: 30px; FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: url(/media/new/button/pfeil_sei_weiss.gif) no-repeat 15px 5px; PADDING-BOTTOM: 2px; COLOR: #ffffff; PADDING-TOP: 2px
+}
+DIV.arrow2 {
+	PADDING-RIGHT: 2px; DISPLAY: block; PADDING-LEFT: 18px; FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: url(/media/new/button/pfeil_sei_grau.gif) no-repeat 5px 5px; PADDING-BOTTOM: 2px; COLOR: #333333; PADDING-TOP: 2px
+}
+DIV.arrow2Active {
+	PADDING-RIGHT: 2px; DISPLAY: block; PADDING-LEFT: 18px; FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: url(/media/new/button/pfeil_sei_weiss.gif) no-repeat 5px 5px; PADDING-BOTTOM: 2px; COLOR: #003580; PADDING-TOP: 2px
+}
+A.arrow2 {
+	PADDING-RIGHT: 2px; DISPLAY: block; PADDING-LEFT: 18px; FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: url(/media/new/button/pfeil_sei_grau.gif) no-repeat 5px 5px; PADDING-BOTTOM: 2px; COLOR: #333333; PADDING-TOP: 2px
+}
+A.arrow2Active {
+	PADDING-RIGHT: 2px; DISPLAY: block; PADDING-LEFT: 18px; FONT-WEIGHT: bold; FONT-SIZE: 11px; BACKGROUND: url(/media/new/button/pfeil_sei_weiss.gif) no-repeat 5px 5px; PADDING-BOTTOM: 2px; COLOR: #ffffff; PADDING-TOP: 2px
+}
+SELECT.ungu {
+	BORDER-RIGHT: #aa7284 1px solid; BORDER-TOP: #aa7284 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #aa7284 1px solid; WIDTH: 170px; COLOR: #aa7284; BORDER-BOTTOM: #aa7284 1px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+TR.white {
+	FONT-WEIGHT: normal; COLOR: #003399; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; HEIGHT: 20px; BACKGROUND-COLOR: #ffffff; FONT-VARIANT: normal
+}
+TD.briefadmin {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; COLOR: #003399; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; HEIGHT: 20px; BACKGROUND-COLOR: #ffffff; FONT-VARIANT: normal
+}
+TD.brief {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; HEIGHT: 20px; FONT-VARIANT: normal
+}
+TD.briefkolom {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #eeeeee; FONT-VARIANT: normal
+}
+TD.red {
+	FONT-SIZE: 11px; COLOR: red; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; HEIGHT: 20px; FONT-VARIANT: normal
+}
+TD.bold {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #003399; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; FONT-VARIANT: normal
+}
+FONT.bold {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #003399; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; FONT-VARIANT: normal
+}
+TD.header {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #003399; FONT-STYLE: normal; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; HEIGHT: 20px; BACKGROUND-COLOR: #a5b5f3; TEXT-ALIGN: center; FONT-VARIANT: normal
+}
+TD.headeradmin {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #003399; FONT-FAMILY: Arial,Verdana, Helvetica, sans-serif; HEIGHT: 20px; BACKGROUND-COLOR: #969696; TEXT-ALIGN: center; FONT-VARIANT: normal
+}
+TEXTAREA.normal {
+	BORDER-RIGHT: #a3a3a3 1px solid; BORDER-TOP: #a3a3a3 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #a3a3a3 1px solid; WIDTH: 240px; COLOR: #020202; BORDER-BOTTOM: #a3a3a3 1px solid; FONT-FAMILY: Verdana, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #c5c5c5
+}
+TR.content {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0px; BORDER-TOP: medium none; DISPLAY: none; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; BORDER-LEFT: medium none; CURSOR: pointer; PADDING-TOP: 0px; BORDER-BOTTOM: medium none; outline-style: double; outline-color: #87b34d
+}
+A:link {
+	TEXT-DECORATION: none
+}
+A:visited {
+	TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
