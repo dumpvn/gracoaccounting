@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="BankAccount"
+		table="bank_account"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="bank_account_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+<!--
+		<property
+			name="Amount"
+			column="amount"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+-->
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="ChartOfAccount"
+			column="chart_of_account_id"
+			class="ChartOfAccount"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Customer"
+			column="customer_id"
+			class="Customers"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Vendor"
+			column="vendor_id"
+			class="Vendors"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Bank"
+			column="bank_id"
+			class="Bank"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<property
+			name="Amount"
+			formula="(select IFNULL(sum(t0.amount),0) from general_ledger t0 where t0.chart_of_account_id = chart_of_account_id and t0.organization_id = organization_id and t0.is_closed='N')"
+			type="double"
+		/>
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+	
+<!--
+		<set name="VendorBills" inverse="true" lazy="true">
+			<key column="bank_account_id"/>
+			<one-to-many class="VendorBill"/>
+		</set>
+
+		<set name="BankTransactionsByFromBankAccount" inverse="true" lazy="true">
+			<key column="bank_account_id"/>
+			<one-to-many class="BankTransaction"/>
+		</set>
+
+		<set name="BankTransactionsByToBankAccount" inverse="true" lazy="true">
+			<key column="bank_account_id"/>
+			<one-to-many class="BankTransaction"/>
+		</set>
+
+		<set name="BankReconciles" inverse="true" lazy="true">
+			<key column="bank_account_id"/>
+			<one-to-many class="BankReconcile"/>
+		</set>
+
+		<set name="Invoices" inverse="true" lazy="true">
+			<key column="bank_account_id"/>
+			<one-to-many class="Invoice"/>
+		</set>
+-->
+
+	</class>	
+</hibernate-mapping>

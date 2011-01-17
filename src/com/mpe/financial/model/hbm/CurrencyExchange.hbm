@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="CurrencyExchange"
+		table="currency_exchange"
+		batch-size="100"
+	>
+		<composite-id name="Id" class="CurrencyExchangePK">
+			<key-many-to-one
+				name="ToCurrency"
+				class="Currency"
+				column="to_currency_id"
+			/>
+			<key-many-to-one
+				name="FromCurrency"
+				class="Currency"
+				column="from_currency_id"
+			/>
+			<key-many-to-one
+				name="CurrencyExchangeRateType"
+				class="CurrencyExchangeRateType"
+				column="currency_exchange_rate_type_id"
+			/>
+			<key-property
+				name="ValidFrom"
+				column="valid_from"
+				type="date"
+				length="10"
+			/>
+			<key-property
+				name="ValidTo"
+				column="valid_to"
+				type="date"
+				length="10"
+			/>
+		</composite-id>
+
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		
+		<property
+			name="Posted"
+			column="is_posted"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<many-to-one
+			name="ChartOfAccount"
+			column="chart_of_account_id"
+			class="ChartOfAccount"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+
+
+	</class>	
+</hibernate-mapping>

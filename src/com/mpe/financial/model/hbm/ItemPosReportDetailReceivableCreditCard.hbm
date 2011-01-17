@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="ItemPosReportDetailReceivableCreditCard" mutable="false">
+	
+		<id name="PosOrderId" type="long"/>
+		<property name="PosOrderDate" type="date"/>
+		<property name="CreditCardNumber" type="string"/>
+		<property name="CreditCardAdm" type="double"/>
+		<property name="TotalCostAfterDiscountAndTax" type="double"/>
+		<property name="PaidDate" type="date"/>
+		<property name="Bank" type="string"/>
+		<property name="NumberOfDigit" type="int"/>
+			
+	</class>	
+</hibernate-mapping>

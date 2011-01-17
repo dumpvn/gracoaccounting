@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="InvoicePolos"
+		table="invoice_polos"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="invoice_polos_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="InvoiceDate"
+			column="invoice_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="InvoiceDue"
+			column="invoice_due"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Status"
+			column="status"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="CustomerPaymentStatus"
+			column="customer_payment_status"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Posted"
+			column="is_posted"
+			type="yes_no"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="BillTo"
+			column="bill_to"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="NpwpNumber"
+			column="npwp_number"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="NpwpDate"
+			column="npwp_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="Reference"
+			column="reference"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="TaxAmount"
+			column="tax_amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="DiscountProcent"
+			column="discount_procent"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="BankAccount"
+			column="bank_account_id"
+			class="BankAccount"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Customer"
+			column="customer_id"
+			class="Customers"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CustomerAlias"
+			column="customer_alias_id"
+			class="Customers"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Tax"
+			column="tax_id"
+			class="Tax"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="DeliveryOrder"
+			column="delivery_order_id"
+			class="DeliveryOrder"
+			not-null="true"
+			unique="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Location"
+			column="location_id"
+			class="Location"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Department"
+			column="department_id"
+			class="Department"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		
+		<property
+			name="Discount1"
+			column="discount_1"
+			type="double"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="Discount2"
+			column="discount_2"
+			type="double"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="Discount3"
+			column="discount_3"
+			type="double"
+			not-null="false"
+			length="5"
+		/>
+		<many-to-one
+			name="Project"
+			column="project_id"
+			class="Project"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+	
+
+		<set name="InvoicePolosDetails" cascade="all-delete-orphan" inverse="true" batch-size="100" lazy="false">
+			<key column="invoice_polos_id"/>
+			<one-to-many class="InvoicePolosDetail"/>
+		</set>
+		
+		<set name="InvoicePolosPrepayments" cascade="all-delete-orphan" inverse="true" batch-size="100" lazy="false">
+			<key column="invoice_polos_id"/>
+			<one-to-many class="InvoicePolosPrepayment"/>
+		</set>
+
+		<one-to-one name="Journal" cascade="all" class="Journal" property-ref="InvoicePolos" fetch="join" />
+	
+		<set name="CustomerPayments" table="customer_payment_invoice" inverse="true" lazy="true" batch-size="100">
+			<key column="invoice_polos_id"/>
+			<composite-element class="CustomerPaymentInvoicePolosFK">
+				<property name="InvoiceAmount" column="invoice_amount" type="double"/>
+				<property name="PaymentAmount" column="payment_amount" type="double"/>
+				<property name="InvoiceExchangeRate" column="invoice_exchange_rate" type="double"/>
+				<many-to-one column="customer_payment_id" class="CustomerPayment" name="CustomerPayment" lazy="false"/>
+			</composite-element>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

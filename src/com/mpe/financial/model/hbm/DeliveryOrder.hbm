@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="DeliveryOrder"
+		table="delivery_order"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="delivery_order_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="DeliveryDate"
+			column="delivery_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Status"
+			column="status"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="InvoiceStatus"
+			column="invoice_status"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Posted"
+			column="is_posted"
+			type="yes_no"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="BonKuning"
+			column="is_bon_kuning"
+			type="yes_no"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="Store"
+			column="is_store"
+			type="yes_no"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="ShipTo"
+			column="ship_to"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="PoliceNumber"
+			column="police_number"
+			type="string"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="Vehicle"
+			column="vehicle"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Expedition"
+			column="expedition"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="BillTo"
+			column="bill_to"
+			type="string"
+			not-null="false"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="SalesOrder"
+			column="sales_order_id"
+			class="SalesOrder"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Customer"
+			column="customer_id"
+			class="Customers"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CustomerAlias"
+			column="customer_alias_id"
+			class="Customers"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Location"
+			column="location_id"
+			class="Location"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<property
+			name="Discount1"
+			column="discount_1"
+			type="double"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="Discount2"
+			column="discount_2"
+			type="double"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="Discount3"
+			column="discount_3"
+			type="double"
+			not-null="false"
+			length="5"
+		/>
+		<many-to-one
+			name="Department"
+			column="department_id"
+			class="Department"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Project"
+			column="project_id"
+			class="Project"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<property
+			name="FromBonKuningDate"
+			column="from_bon_kuning_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="ToBonKuningDate"
+			column="to_bon_kuning_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="Detail"
+			column="is_detail"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Rekap"
+			column="is_rekap"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<many-to-one
+			name="Tax"
+			column="tax_id"
+			class="Tax"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<property
+			name="TaxAmount"
+			column="tax_amount"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+		
+		<one-to-one name="CustomerRetur" class="CustomerRetur" property-ref="DeliveryOrder"/>
+
+		<one-to-one name="Journal" cascade="all" class="Journal" property-ref="DeliveryOrder" fetch="join" />	
+
+		<set name="DeliveryOrderDetails" table="delivery_order_detail" cascade="all-delete-orphan" lazy="false" inverse="true" batch-size="100">
+			<key column="delivery_order_id"/>
+			<one-to-many class="DeliveryOrderDetail"/>
+		</set>
+		
+		<one-to-one name="Invoice" class="Invoice" property-ref="DeliveryOrder"/>
+		
+		<one-to-one name="InvoiceSimple" class="InvoiceSimple" property-ref="DeliveryOrder"/>
+		
+		<one-to-one name="InvoicePolos" class="InvoicePolos" property-ref="DeliveryOrder"/>
+		
+		<set name="DeliveryOrders" table="rekap_bon_kuning_delivery_order" cascade="all" lazy="false" order-by="delivery_order_id asc" batch-size="100" >
+			<key column="rekap_bon_kuning_id"/>
+			<many-to-many column="delivery_order_id" class="DeliveryOrder" />
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

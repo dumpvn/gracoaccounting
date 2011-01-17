@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="RekapMutationPayableReport" mutable="false">
+	
+		<id name="VendorId" type="long"/>
+		<property name="Code" type="string"/>
+		<property name="Company" type="string"/>
+		<property name="FirstBalance" type="double"/>
+		<property name="DebitPayment" type="double"/>
+		<property name="DebitRetur" type="double"/>
+		<property name="Credit" type="double"/>
+		<property name="NumberOfDigit" type="int"/>
+			
+	</class>	
+</hibernate-mapping>

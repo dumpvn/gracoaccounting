@@ -1,0 +1,314 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="ChartOfAccount"
+		table="chart_of_account"
+		batch-size="100000"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="chart_of_account_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="Debit"
+			column="is_debit"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Type"
+			column="type"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+			length="128"
+		/>
+		<property
+			name="Groups"
+			column="groups"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<!--
+		<property
+			name="Level"
+			column="level"
+			type="int"
+			not-null="true"
+			length="1"
+		/>
+		-->
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="ChartGroup"
+			column="chart_group_id"
+			class="ChartGroup"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Parent"
+			column="parent_id"
+			class="ChartOfAccount"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+	
+<!--
+		<set name="BankTransactions" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="BankTransaction"/>
+		</set>
+
+		<set name="BankAccounts" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="BankAccount"/>
+		</set>
+
+		<set name="UndepositTransactions" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="UndepositTransaction"/>
+		</set>
+-->
+		<set name="ChartOfAccounts" inverse="true" lazy="true" batch-size="100000">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="ChartOfAccount"/>
+		</set>
+
+<!--
+		<set name="Items" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="Item"/>
+		</set>
+
+		<set name="BankReconcilesByInterestEarnedAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="BankReconcile"/>
+		</set>
+
+		<set name="BankReconcilesByChartOfAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="BankReconcile"/>
+		</set>
+
+		<set name="BankReconcilesByServiceChargeAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="BankReconcile"/>
+		</set>
+
+		<set name="BankReconcilesByJournalChartOfAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="BankReconcile"/>
+		</set>
+
+		<set name="Vendors" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="Vendors"/>
+		</set>
+
+		<set name="Inventories" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="Inventory"/>
+		</set>
+
+		<set name="Customers" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="Customers"/>
+		</set>
+
+		<set name="CustomerPaymentsByDiscountAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="CustomerPayment"/>
+		</set>
+
+		<set name="CustomerPaymentsByExceedAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="CustomerPayment"/>
+		</set>
+
+		<set name="ItemPrices" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="ItemPrice"/>
+		</set>
+
+		<set name="GeneralLedgers" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="GeneralLedger"/>
+		</set>
+
+		<set name="Taxs" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="Tax"/>
+		</set>
+
+		<set name="OrganizationSetupsByRealizedCurrencyLossGainAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByUnrealizedCurrencyLossGainAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByRetainedAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByUndepositAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByPrepaymentAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsBySalesAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByProfitLossAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByCogsAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByStockOpnameAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByInventoryBeginningAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByApAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByCustomerReturAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByArAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByPrepaymentToVendorAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByInventoryAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+
+		<set name="OrganizationSetupsByInventoryEndingAccount" inverse="true" lazy="true">
+			<key column="chart_of_account_id"/>
+			<one-to-many class="OrganizationSetup"/>
+		</set>
+	
+		<set
+			name="Journals"
+			table="journal_detail"
+			cascade="all"
+			lazy="true"
+		>
+			<key column="chart_of_account_id"/>
+			<many-to-many column="journal_id" class="Journal"/>
+		</set>
+		<set
+			name="Vendors"
+			table="item_vendor"
+			cascade="all"
+			lazy="true"
+		>
+			<key column=""/>
+			<many-to-many column="vendor_id" class="Vendors"/>
+		</set>
+		<set
+			name="Currencies"
+			table="currency_exchange"
+			cascade="all"
+			lazy="true"
+		>
+			<key column=""/>
+			<many-to-many column="to_currency_id" class="Currency"/>
+		</set>
+-->
+
+	</class>	
+</hibernate-mapping>

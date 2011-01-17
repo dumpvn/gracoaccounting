@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="CustomerPayment"
+		table="customer_payment"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="customer_payment_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="PaymentDate"
+			column="payment_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Amount"
+			column="amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="ExceedAmount"
+			column="exceed_amount"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="Status"
+			column="status"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Posted"
+			column="is_posted"
+			type="yes_no"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="Method"
+			column="method"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="CardNo"
+			column="card_no"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="CheckNo"
+			column="check_no"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="Reference"
+			column="reference"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Discount"
+			column="discount"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="DiscountAccount"
+			column="discount_account_id"
+			class="ChartOfAccount"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="ExceedAccount"
+			column="exceed_account_id"
+			class="ChartOfAccount"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Customer"
+			column="customer_id"
+			class="Customers"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CustomerAlias"
+			column="customer_alias_id"
+			class="Customers"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="BankAccount"
+			column="bank_account_id"
+			class="BankAccount"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Location"
+			column="location_id"
+			class="Location"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Department"
+			column="department_id"
+			class="Department"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Project"
+			column="project_id"
+			class="Project"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+
+<!--
+		<set name="UndepositTransactions" inverse="true" lazy="true">
+			<key column="customer_payment_id"/>
+			<one-to-many class="UndepositTransaction"/>
+		</set>
+-->
+
+		<one-to-one name="Journal" cascade="all" class="Journal" property-ref="CustomerPayment" fetch="join" />
+
+		<one-to-one name="BankTransaction" cascade="all" class="BankTransaction" property-ref="CustomerPayment" fetch="join" />
+		
+		<set name="CustomerPaymentDetails" cascade="all-delete-orphan" inverse="true" lazy="false" batch-size="100">
+			<key column="customer_payment_id"/>
+			<one-to-many class="CustomerPaymentDetail" />
+		</set>
+		
+		<set name="CustomerReturs" table="customer_payment_customer_retur" lazy="false" batch-size="100">
+			<key column="customer_payment_id"/>
+			<many-to-many column="customer_retur_id" class="CustomerRetur"/>
+		</set>
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="Item"
+		table="item"
+		batch-size="1000"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="item_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Type"
+			column="type"
+			type="string"
+			not-null="false"
+			length="18"
+		/>
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="Code"
+			column="code"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Plu"
+			column="plu"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Barcode"
+			column="barcode"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Width"
+			column="width"
+			type="double"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="Depth"
+			column="depth"
+			type="double"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="Height"
+			column="height"
+			type="double"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="TextDimension"
+			column="text_dimension"
+			type="string"
+			not-null="false"
+			length="128"
+		/>
+		<property
+			name="Weight"
+			column="weight"
+			type="double"
+			not-null="false"
+			length="8"
+		/>
+		<property
+			name="Active"
+			column="is_active"
+			type="yes_no"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="CostPrice"
+			column="cost_price"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="ImageContentType"
+			column="image_content_type"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="Image"
+			column="image"
+			type="binary"
+			not-null="false"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="CostPriceAccount"
+			column="cost_price_account_id"
+			class="ChartOfAccount"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="ItemCategory"
+			column="item_category_id"
+			class="ItemCategory"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="PurchaseTax"
+			column="purchase_tax_id"
+			class="Tax"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="ItemStatus"
+			column="item_status_id"
+			class="ItemStatus"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		
+		
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+		
+		<set name="ItemPrices" cascade="all-delete-orphan" table="item_price" inverse="true" lazy="false" batch-size="1000">
+			<key column="item_id"/>
+			<one-to-many class="ItemPrice" />
+		</set>
+		
+		<set name="ItemGroups" cascade="all-delete-orphan" table="item_group" inverse="true" lazy="false" batch-size="1000">
+			<key column="item_id"/>
+			<one-to-many class="ItemGroup" />
+		</set>
+		
+		<set name="ItemVendors" cascade="all-delete-orphan" table="item_vendor" inverse="true" lazy="false" batch-size="1000">
+			<key column="item_id"/>
+			<one-to-many class="ItemVendor" />
+		</set>
+		
+		<set name="ItemCustomFields" cascade="all-delete-orphan" inverse="true" lazy="false" batch-size="1000">
+			<key column="item_id"/>
+			<one-to-many class="ItemCustomField" />
+		</set>
+		
+
+	</class>	
+</hibernate-mapping>

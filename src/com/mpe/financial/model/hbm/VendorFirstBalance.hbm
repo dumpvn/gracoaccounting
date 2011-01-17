@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="VendorFirstBalance"
+		table="vendor_first_balance"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="vendor_first_balance_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="FirstBalanceDate"
+			column="first_balance_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Amount"
+			column="amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Vendor"
+			column="vendor_id"
+			class="Vendors"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+
+
+	</class>	
+</hibernate-mapping>

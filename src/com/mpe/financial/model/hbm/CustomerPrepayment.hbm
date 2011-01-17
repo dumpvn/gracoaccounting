@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="CustomerPrepayment"
+		table="customer_prepayment"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="customer_prepayment_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="PrepaymentDate"
+			column="prepayment_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Amount"
+			column="amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Status"
+			column="status"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="InvoiceStatus"
+			column="invoice_status"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Reference"
+			column="reference"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="Posted"
+			column="is_posted"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Customer"
+			column="customer_id"
+			class="Customers"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="CustomerAlias"
+			column="customer_alias_id"
+			class="Customers"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="SalesOrder"
+			column="sales_order_id"
+			class="SalesOrder"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="BankAccount"
+			column="bank_account_id"
+			class="BankAccount"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Location"
+			column="location_id"
+			class="Location"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Department"
+			column="department_id"
+			class="Department"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Project"
+			column="project_id"
+			class="Project"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+	
+		<one-to-one name="BankTransaction" cascade="all" class="BankTransaction" property-ref="CustomerPrepayment" fetch="join" />
+
+		<one-to-one name="Journal" cascade="all" class="Journal" property-ref="CustomerPrepayment" fetch="join" />
+		
+
+		<set name="Invoices" table="invoice_customer_prepayment" inverse="true" batch-size="100">
+			<key column="customer_prepayment_id"/>
+			<composite-element class="InvoiceCustomerPrepaymentFK">
+				<property name="Amount" column="amount" type="double"/>
+				<many-to-one class="Invoice" column="invoice_id" name="Invoice"/>
+			</composite-element>
+		</set>
+		
+		<set name="InvoiceSimples" table="invoice_simple_customer_prepayment" inverse="true" batch-size="100">
+			<key column="customer_prepayment_id"/>
+			<composite-element class="InvoiceSimpleCustomerPrepaymentFK">
+				<property name="Amount" column="amount" type="double"/>
+				<many-to-one class="InvoiceSimple" column="invoice_simple_id" name="InvoiceSimple"/>
+			</composite-element>
+		</set>
+		
+		<set name="InvoicePolos" table="invoice_polos_customer_prepayment" inverse="true" batch-size="100">
+			<key column="customer_prepayment_id"/>
+			<composite-element class="InvoicePolosCustomerPrepaymentFK">
+				<property name="Amount" column="amount" type="double"/>
+				<many-to-one class="InvoicePolos" column="invoice_polos_id" name="InvoicePolos"/>
+			</composite-element>
+		</set>
+	
+
+	</class>	
+</hibernate-mapping>

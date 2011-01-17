@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="Journal"
+		table="journal"
+		batch-size="100000"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="journal_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="JournalDate"
+			column="journal_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Reference"
+			column="reference"
+			type="string"
+			not-null="false"
+			length="128"
+		/>
+		<property
+			name="Posted"
+			column="is_posted"
+			type="yes_no"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="JournalType"
+			column="journal_type_id"
+			class="JournalType"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Customer"
+			column="customer_id"
+			class="Customers"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Vendor"
+			column="vendor_id"
+			class="Vendors"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Project"
+			column="project_id"
+			class="Project"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+
+		<set name="JournalDetails" cascade="all-delete-orphan" inverse="true" table="journal_detail" lazy="false" batch-size="100">
+			<key column="journal_id"/>
+			<one-to-many class="JournalDetail" />
+		</set>
+
+<!--		
+		<set name="GeneralLedgers" table="general_ledger_journal" inverse="true" lazy="true">
+			<key column="journal_id"/>
+			<many-to-many column="general_ledger_id" class="GeneralLedger"/>
+		</set>
+-->		
+		<many-to-one name="StockOpname" column="stock_opname_id" class="StockOpname" not-null="false" cascade="all" unique="true"/>
+		<many-to-one name="ReturToVendor" column="retur_to_vendor_id" class="ReturToVendor" not-null="false" unique="true"/>
+		<many-to-one name="DeliveryOrder" column="delivery_order_id" class="DeliveryOrder" not-null="false" unique="true"/>
+		<many-to-one name="CustomerRetur" column="customer_retur_id" class="CustomerRetur" not-null="false" unique="true"/>
+		<many-to-one name="Invoice" column="invoice_id" class="Invoice" not-null="false" unique="true"/>
+		<many-to-one name="InvoiceSimple" column="invoice_simple_id" class="InvoiceSimple" not-null="false" unique="true"/>
+		<many-to-one name="InvoicePolos" column="invoice_polos_id" class="InvoicePolos" not-null="false" unique="true"/>
+		<many-to-one name="CustomerPrepayment" column="customer_prepayment_id" class="CustomerPrepayment" not-null="false" unique="true"/>
+		<many-to-one name="CustomerPayment" column="customer_payment_id" class="CustomerPayment" not-null="false" unique="true"/>
+		<many-to-one name="PrepaymentToVendor" column="prepayment_to_vendor_id" class="PrepaymentToVendor" not-null="false" unique="true"/>
+		<many-to-one name="PaymentToVendor" column="payment_to_vendor_id" class="PaymentToVendor" not-null="false" unique="true"/>		
+		<many-to-one name="VendorBill" column="vendor_bill_id" class="VendorBill" not-null="false" unique="true"/>		
+		<many-to-one name="BankTransaction" column="bank_transaction_id" class="BankTransaction" not-null="false" unique="true"/>
+		<many-to-one name="BankReconcile" column="bank_reconcile_id" class="BankReconcile" not-null="false" unique="true"/>
+
+
+	</class>	
+</hibernate-mapping>

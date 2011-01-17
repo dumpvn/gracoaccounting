@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="ItemPosReportStockOpname" mutable="false">
+	
+		<id name="ItemId" type="long"/>
+		<property name="Merk" type="string"/>
+		<property name="Type" type="string"/>
+		<property name="Color" type="string"/>
+		<property name="Name" type="string"/>
+		<property name="Code" type="string"/>
+		<property name="NumberOfDigit" type="int"/>
+			
+	</class>	
+</hibernate-mapping>

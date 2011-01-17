@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="ReceivingDetail"
+		table="receiving_detail"
+		batch-size="100"
+	>
+		<composite-id name="Id" class="ReceivingDetailPK">
+			<key-many-to-one
+				name="Receiving"
+				class="Receiving"
+				column="receiving_id"
+			/>
+			<key-many-to-one
+				name="Item"
+				class="Item"
+				column="item_id"
+			/>
+		</composite-id>
+
+		<property
+			name="Quantity"
+			column="quantity"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Price"
+			column="price"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="DiscountAmount"
+			column="discount_amount"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="DiscountProcent"
+			column="discount_procent"
+			type="double"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="ItemUnit"
+			column="item_unit_id"
+			class="ItemUnit"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<property
+			name="UnitConversion"
+			column="unit_conversion"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<many-to-one
+			name="Warehouse"
+			column="warehouse_id"
+			class="Warehouse"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Tax"
+			column="tax_id"
+			class="Tax"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<property
+			name="TaxAmount"
+			column="tax_amount"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		
+		<property name="ReturQuantity" type="double">
+			<formula>
+				(select IFNULL(sum(a.quantity),0) from retur_to_vendor_detail a join retur_to_vendor b on a.retur_to_vendor_id=b.retur_to_vendor_id where b.receiving_id=receiving_id and a.item_id=item_id)
+			</formula>
+		</property>
+		
+
+
+	</class>	
+</hibernate-mapping>

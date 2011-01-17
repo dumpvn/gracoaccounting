@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="Bank"
+		table="bank"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="bank_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="128"
+		/>
+		<property
+			name="Address"
+			column="address"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="City"
+			column="city"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="PostalCode"
+			column="postal_code"
+			type="string"
+			not-null="false"
+			length="12"
+		/>
+		<property
+			name="Province"
+			column="province"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="Telephone"
+			column="telephone"
+			type="string"
+			not-null="false"
+			length="16"
+		/>
+		<property
+			name="Fax"
+			column="fax"
+			type="string"
+			not-null="false"
+			length="16"
+		/>
+		<property
+			name="Email"
+			column="email"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+	
+
+		<set name="BankAccounts" inverse="true" lazy="true" batch-size="100">
+			<key column="bank_id"/>
+			<one-to-many class="BankAccount"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

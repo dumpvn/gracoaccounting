@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="GeneralLedger"
+		table="general_ledger"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="general_ledger_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="LedgerDate"
+			column="ledger_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Amount"
+			column="amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Debit"
+			column="is_debit"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Closed"
+			column="is_closed"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Setup"
+			column="is_setup"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="ChartOfAccount"
+			column="chart_of_account_id"
+			class="ChartOfAccount"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="false"
+		>
+		</many-to-one>
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+		
+		<set name="Journals" table="general_ledger_journal" cascade="all" lazy="true" batch-size="100">
+			<key column="general_ledger_id"/>
+			<many-to-many column="journal_id" class="Journal"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

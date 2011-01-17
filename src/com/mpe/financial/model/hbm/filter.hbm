@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+	<filter-def name="fromDate">
+		<filter-param name="fromDate" type="date"/>
+	</filter-def>
+
+	<filter-def name="toDate">
+		<filter-param name="toDate" type="date"/>
+	</filter-def>
+	
+	<filter-def name="organizationId">
+		<filter-param name="organizationId" type="long"/>
+	</filter-def>
+	
+	<filter-def name="chartOfAccountId">
+		<filter-param name="chartOfAccountId" type="long"/>
+	</filter-def>
+
+</hibernate-mapping>

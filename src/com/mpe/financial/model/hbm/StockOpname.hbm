@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="StockOpname"
+		table="stock_opname"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="stock_opname_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="StockOpnameDate"
+			column="stock_opname_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Status"
+			column="status"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="Posted"
+			column="is_posted"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Note"
+			column="note"
+			type="string"
+			not-null="false"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="Warehouse"
+			column="warehouse_id"
+			class="Warehouse"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="StockOpnameType"
+			column="stock_opname_type_id"
+			class="StockOpnameType"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Location"
+			column="location_id"
+			class="Location"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Customer"
+			column="customer_id"
+			class="Customers"
+			not-null="false"
+		>
+		</many-to-one>
+		
+		
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+		
+		<one-to-one name="Journal" cascade="save-update" class="Journal" property-ref="StockOpname" fetch="join"/>
+
+		<set cascade="all-delete-orphan" inverse="true" lazy="false" name="StockOpnameDetails" table="stock_opname_detail" batch-size="100" fetch="join">
+			<key column="stock_opname_id" />
+			<one-to-many class="StockOpnameDetail" />
+		</set>
+
+
+
+	</class>	
+</hibernate-mapping>

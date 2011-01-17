@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="PurchaseOrder"
+		table="purchase_order"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="purchase_order_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="PurchaseDate"
+			column="purchase_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Status"
+			column="status"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="ReceivingStatus"
+			column="receiving_status"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="PaymentToVendorStatus"
+			column="payment_to_vendor_status"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="CreditLimit"
+			column="credit_limit"
+			type="int"
+			not-null="false"
+			length="3"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="TaxAmount"
+			column="tax_amount"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<property
+			name="DiscountAmount"
+			column="discount_amount"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="DiscountProcent"
+			column="discount_procent"
+			type="double"
+			not-null="false"
+			length="5"
+		/>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Vendor"
+			column="vendor_id"
+			class="Vendors"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Project"
+			column="project_id"
+			class="Project"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Tax"
+			column="tax_id"
+			class="Tax"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Location"
+			column="location_id"
+			class="Location"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Department"
+			column="department_id"
+			class="Department"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="PurchaseRequest"
+			column="purchase_request_id"
+			class="PurchaseRequest"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="TermOfPayment"
+			column="term_of_payment_id"
+			class="TermOfPayment"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+	
+
+		<set name="Receivings" inverse="true" lazy="false" batch-size="100">
+			<key column="purchase_order_id"/>
+			<one-to-many class="Receiving"/>
+		</set>
+
+		<set name="PrepaymentToVendors" inverse="true" lazy="false" batch-size="100">
+			<key column="purchase_order_id"/>
+			<one-to-many class="PrepaymentToVendor" />
+		</set>
+		
+
+		<set name="PurchaseOrderDetails" table="purchase_order_detail" cascade="all-delete-orphan" inverse="true" lazy="false" batch-size="100" order-by="item_id ASC" >
+			<key column="purchase_order_id"/>
+			<one-to-many class="PurchaseOrderDetail" />
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

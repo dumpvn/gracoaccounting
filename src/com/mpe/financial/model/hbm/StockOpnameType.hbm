@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="StockOpnameType"
+		table="stock_opname_type"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="stock_opname_type_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Code"
+			column="code"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="Receipt"
+			column="is_receipt"
+			type="yes_no"
+			not-null="true"
+			length="1"
+		/>
+		<many-to-one
+			name="ChartOfAccount"
+			column="chart_of_account_id"
+			class="ChartOfAccount"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+	
+
+	</class>	
+</hibernate-mapping>

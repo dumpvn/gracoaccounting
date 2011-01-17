@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="ChartGroup"
+		table="chart_group"
+		batch-size="10000"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="chart_group_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Groups"
+			column="groups"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="Debit"
+			column="is_debit"
+			type="true_false"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+			length="128"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+	
+
+		<set name="ChartOfAccounts" inverse="true" lazy="true" batch-size="10000">
+			<key column="chart_group_id"/>
+			<one-to-many class="ChartOfAccount"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

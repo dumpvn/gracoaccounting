@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<joined-subclass
+		name="Inventory"
+		table="inventory"
+		extends="Item"
+		batch-size="1000"
+	>
+		<key column="item_id"/>
+
+		<property
+			name="MinimumStock"
+			column="minimum_stock"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="MaximumStock"
+			column="maximum_stock"
+			type="double"
+			not-null="false"
+			length="20"
+		/>
+		<many-to-one
+			name="ItemUnit"
+			column="item_unit_id"
+			class="ItemUnit"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="InventoryAccount"
+			column="inventory_account_id"
+			class="ChartOfAccount"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+
+
+	</joined-subclass>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="ItemPosReportRekapReceivableCreditCard" mutable="false">
+	
+		<id name="LocationId" type="long"/>
+		<property name="Name" type="string"/>
+		<property name="BeginningGross" type="double"/>
+		<property name="BeginningNetto" type="double"/>
+		<property name="BeginningAdm" type="double"/>
+		<property name="TransactionGross" type="double"/>
+		<property name="TransactionNetto" type="double"/>
+		<property name="TransactionAdm" type="double"/>
+		<property name="PaidGross" type="double"/>
+		<property name="PaidNetto" type="double"/>
+		<property name="PaidAdm" type="double"/>
+		<property name="NumberOfDigit" type="int"/>
+			
+	</class>	
+</hibernate-mapping>

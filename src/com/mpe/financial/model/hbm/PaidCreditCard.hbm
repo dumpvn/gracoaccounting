@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="PaidCreditCard"
+		table="paid_credit_card"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="paid_credit_card_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="PaidDate"
+			column="paid_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="CreditCardNumber"
+			column="credit_card_number"
+			type="string"
+			not-null="true"
+			length="16"
+		/>
+		<property
+			name="Master"
+			column="is_master"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Adm"
+			column="adm"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Amount"
+			column="amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Bank"
+			column="bank_id"
+			class="Bank"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Location"
+			column="location_id"
+			class="Location"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="PosOrder"
+			column="pos_order_id"
+			class="PosOrder"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

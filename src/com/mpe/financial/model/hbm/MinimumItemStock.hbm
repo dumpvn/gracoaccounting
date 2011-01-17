@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="MinimumItemStock" mutable="false">
+	
+		<id name="ItemId" type="long"/>
+		<property name="Code" type="string"/>
+		<property name="Name" type="string"/>
+		<property name="Quantity" type="double"/>
+		<property name="MinimumQuantity" type="double"/>
+			
+	</class>	
+</hibernate-mapping>

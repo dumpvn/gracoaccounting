@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="View"
+		table="view"
+		batch-size="1000"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="view_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="ViewName"
+			column="view_name"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Link"
+			column="link"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="View"
+			column="is_view"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<property type="int" name="Childs" 
+			formula="(select count(t0.view_id) from view t0 inner join role_view t1 on t0.view_id=t1.view_id where t0.is_view='Y' and t0.parent_id = view_id )"
+		/>
+		<many-to-one
+			name="Parent"
+			column="parent_id"
+			class="View"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>	
+
+		<set name="Views" inverse="true" lazy="false" batch-size="1000">
+			<key column="parent_id"/>
+			<one-to-many class="View"/>
+		</set>
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="VendorsCommunication"
+		table="vendors_communication"
+		batch-size="1000"
+	>
+		<composite-id name="Id" class="VendorsCommunicationPK">
+			<key-many-to-one class="Vendors" name="Vendors" column="vendor_id"/>
+			<key-property name="ContactPerson" type="string" column="contact_person"/>
+		</composite-id>
+
+		<property
+			name="Title"
+			column="title"
+			type="string"
+			not-null="false"
+			length="70"
+		/>
+		<property
+			name="OfficePhone"
+			column="office_phone"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Mobile"
+			column="mobile"
+			type="string"
+			not-null="false"
+			length="16"
+		/>
+		<property
+			name="Fax"
+			column="fax"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Email"
+			column="email"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+
+
+	</class>
+</hibernate-mapping>

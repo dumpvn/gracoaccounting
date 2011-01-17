@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="RekapMutationStockReport" mutable="false">
+	
+		<id name="ItemId" type="long"/>
+		<property name="Code" type="string"/>
+		<property name="Name" type="string"/>
+		<property name="Price" type="double"/>
+		<property name="BeginningQuantity" type="double"/>
+		<property name="BeginningTotal" type="double"/>
+		<property name="ReceivingQuantity" type="double"/>
+		<property name="ReceivingTotal" type="double"/>
+		<property name="ReturToVendorQuantity" type="double"/>
+		<property name="ReturToVendorTotal" type="double"/>
+		<property name="DeliveryOrderQuantity" type="double"/>
+		<property name="DeliveryOrderTotal" type="double"/>
+		<property name="CustomerReturQuantity" type="double"/>
+		<property name="CustomerReturTotal" type="double"/>
+		<property name="StockOpnameQuantity" type="double"/>
+		<property name="StockOpnameTotal" type="double"/>
+		
+		<property name="NumberOfDigit" type="int"/>
+		
+			
+	</class>	
+</hibernate-mapping>

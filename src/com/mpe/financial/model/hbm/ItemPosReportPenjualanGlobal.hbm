@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="ItemPosReportPenjualanGlobal" mutable="false">
+	
+		<id name="ItemId" type="long"/>
+		<property name="Merk" type="string"/>
+		<property name="Name" type="string"/>
+		<property name="Code" type="string"/>
+		<property name="Price" type="double"/>
+		<property name="StockAwal" type="double"/>
+		<property name="Masuk" type="double"/>
+		<property name="TukarMasuk" type="double"/>
+		<property name="Retur" type="double"/>
+		<property name="TukarKeluar" type="double"/>
+		<property name="Jual" type="double"/>
+		<property name="NumberOfDigit" type="int"/>
+		
+	</class>	
+</hibernate-mapping>

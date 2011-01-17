@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="ProfitLoss3Report" mutable="false">
+	
+		<id name="ChartOfAccountId" type="long"/>
+		<property name="Number" type="string"/>
+		<property name="Name" type="string"/>
+		<property name="Type" type="string"/>
+		<property name="Groups" type="string"/>
+		<property name="Debit" type="yes_no"/>
+		<property name="CurrentAmount" type="double"/>
+		<property name="LastAmount" type="double"/>
+		<property name="YtdAmount" type="double"/>
+		<property name="FromToAmount" type="double"/>
+		<property name="NumberOfDigit" type="int"/>
+		
+			
+	</class>	
+</hibernate-mapping>

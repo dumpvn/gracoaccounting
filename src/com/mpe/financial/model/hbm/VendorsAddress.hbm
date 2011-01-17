@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="VendorsAddress"
+		table="vendors_address"
+		batch-size="1000"
+	>
+		<composite-id name="Id" class="VendorsAddressPK">
+			<key-property name="AddressCode" type="string" column="address_code"/>
+			<key-many-to-one class="Vendors" name="Vendors" column="vendor_id"/>
+		</composite-id>
+
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="100"
+		/>
+		<property
+			name="Address"
+			column="address"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="City"
+			column="city"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="PostalCode"
+			column="postal_code"
+			type="string"
+			not-null="false"
+			length="8"
+		/>
+
+
+	</class>
+</hibernate-mapping>

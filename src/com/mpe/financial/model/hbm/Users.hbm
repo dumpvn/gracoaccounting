@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="Users"
+		table="users"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="user_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="UserName"
+			column="user_name"
+			type="string"
+			not-null="true"
+			length="32"
+			unique="true"
+		/>
+		<property
+			name="UserPass"
+			column="user_pass"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="Active"
+			column="is_active"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Sso"
+			column="is_sso"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="UserType"
+			column="user_type"
+			type="string"
+			not-null="false"
+			length="16"
+		/>
+		<property
+			name="Ip"
+			column="ip"
+			type="string"
+			not-null="false"
+			length="16"
+		/>
+		<property
+			name="Printer"
+			column="printer"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+	
+		<set name="Roles" table="user_role" lazy="false" batch-size="100" order-by="role_id ASC" >
+			<key column="user_id"/>
+			<many-to-many column="role_id" class="Role"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

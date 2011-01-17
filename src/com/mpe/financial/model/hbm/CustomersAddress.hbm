@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="CustomersAddress"
+		table="customers_address"
+		batch-size="1000"
+	>
+		
+		<composite-id name="Id" class="CustomersAddressPK">
+			<key-property name="InvoiceTaxAddress" column="is_invoice_tax_address" type="string" />
+			<key-property name="InvoiceAddress" column="is_invoice_address" type="string" />
+			<key-property name="DeliveryAddress" column="is_delivery_address" type="string" />
+			<key-many-to-one
+				name="Customers"
+				column="customer_id"
+				class="Customers"
+			/>
+		</composite-id>
+
+		<property
+			name="Code"
+			column="code"
+			type="string"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Address"
+			column="address"
+			type="string"
+			not-null="true"
+		/>
+		<property
+			name="City"
+			column="city"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="PostalCode"
+			column="postal_code"
+			type="string"
+			not-null="false"
+			length="8"
+		/>
+
+
+	</class>
+</hibernate-mapping>

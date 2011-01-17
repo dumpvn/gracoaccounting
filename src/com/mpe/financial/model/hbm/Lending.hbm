@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="Lending"
+		table="lending"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="lending_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="LendingDate"
+			column="lending_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="ReturDate"
+			column="retur_date"
+			type="date"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<property
+			name="Status"
+			column="status"
+			type="string"
+			not-null="true"
+			length="16"
+		/>
+		<many-to-one
+			name="Salesman"
+			column="salesman_id"
+			class="Salesman"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+	
+		<set name="LendingDetails" cascade="all-delete-orphan" inverse="true" lazy="false">
+			<key column="lending_id"/>
+			<one-to-many class="LendingDetail"/>
+		</set>
+
+
+	</class>	
+</hibernate-mapping>

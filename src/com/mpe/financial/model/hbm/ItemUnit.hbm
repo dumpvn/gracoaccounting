@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="ItemUnit"
+		table="item_unit"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="item_unit_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Symbol"
+			column="symbol"
+			type="string"
+			not-null="true"
+			length="3"
+		/>
+		<property
+			name="Base"
+			column="is_base"
+			type="yes_no"
+			not-null="true"
+			length="1"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		
+		<set name="ItemUnitExchangesByFromItemUnit" table="item_unit_exchange" cascade="save-update" lazy="false" batch-size="100">
+			<key column="from_item_unit_id"/>
+			<composite-element class="ItemUnitExchangeFK">
+				<property name="Conversion" column="conversion" type="double" not-null="true"/>
+				<many-to-one name="ToItemUnit" column="to_item_unit_id" class="ItemUnit" lazy="false" not-null="true"/>
+				<many-to-one name="Item" column="item_id" class="Item" lazy="false" not-null="false"/>
+			</composite-element>
+		</set>
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="Role"
+		table="role"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="role_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="RoleName"
+			column="role_name"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+	
+		<list name="Views" table="role_view" cascade="save-update" lazy="false" batch-size="1000" >
+			<key column="role_id"/>
+			<index column="view_seq"/>
+			<many-to-many class="View" column="view_id"/>
+		</list>
+
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="ItemPosReportKomisiSpg" mutable="false">
+	
+		<id name="SalesmanId" type="long"/>
+		<property name="FullName" type="string"/>
+		<property name="NickName" type="string"/>
+		<property name="Code" type="string"/>
+		
+		<property name="NumberOfDigit" type="int"/>
+			
+	</class>	
+</hibernate-mapping>

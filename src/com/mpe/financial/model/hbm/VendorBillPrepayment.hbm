@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="VendorBillPrepayment"
+		table="vendor_bill_prepayment_to_vendor"
+		batch-size="100"
+	>
+		<composite-id name="Id" class="VendorBillPrepaymentPK">
+			<key-many-to-one
+				name="VendorBill"
+				class="VendorBill"
+				column="vendor_bill_id"
+			/>
+			<key-many-to-one
+				name="PrepaymentToVendor"
+				class="PrepaymentToVendor"
+				column="prepayment_to_vendor_id"
+			/>
+		</composite-id>
+
+		<property
+			name="Amount"
+			column="amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+
+	</class>	
+</hibernate-mapping>

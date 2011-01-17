@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="PaymentToVendorDetail"
+		table="payment_to_vendor_vendor_bill"
+		batch-size="100"
+	>
+		<composite-id name="Id" class="PaymentToVendorDetailPK">
+			<key-many-to-one
+				name="VendorBill"
+				class="VendorBill"
+				column="vendor_bill_id"
+			/>
+			<key-many-to-one
+				name="PaymentToVendor"
+				class="PaymentToVendor"
+				column="payment_to_vendor_id"
+			/>
+		</composite-id>
+		<property
+			name="PaymentAmount"
+			column="payment_amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="VendorBillAmount"
+			column="vendor_bill_amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="VendorBillExchangeRate"
+			column="vendor_bill_exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+
+	</class>	
+</hibernate-mapping>

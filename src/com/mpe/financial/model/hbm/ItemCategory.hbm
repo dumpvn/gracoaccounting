@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="ItemCategory"
+		table="item_category"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="item_category_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+			length="128"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+	
+<!--
+		<set name="Items" inverse="true" lazy="true">
+			<key column="item_category_id"/>
+			<one-to-many class="Item"/>
+		</set>
+-->
+
+	</class>	
+</hibernate-mapping>

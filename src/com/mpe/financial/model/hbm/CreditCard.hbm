@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="CreditCard"
+		table="credit_card"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="credit_card_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Discount"
+			column="discount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="Bank"
+			column="bank_id"
+			class="Bank"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="ChartOfAccount"
+			column="chart_of_account_id"
+			class="ChartOfAccount"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+	
+		<set name="CreditCardDetails" table="credit_card_detail" cascade="all" lazy="false">
+			<key column="credit_card_id"/>
+			<one-to-many class="CreditCardDetail"/>
+		</set>
+		
+
+
+	</class>	
+</hibernate-mapping>

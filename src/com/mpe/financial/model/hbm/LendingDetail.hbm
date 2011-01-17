@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="LendingDetail"
+		table="lending_detail"
+	>
+		<composite-id name="Id" class="LendingDetailPK">
+			<key-many-to-one
+				name="Lending"
+				class="Lending"
+				column="lending_id"
+			/>
+			<key-many-to-one
+				name="Item"
+				class="Item"
+				column="item_id"
+			/>
+		</composite-id>
+
+		<property
+			name="LendingQuantity"
+			column="lending_quantity"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="ReturQuantity"
+			column="retur_quantity"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<many-to-one
+			name="ItemUnit"
+			column="item_unit_id"
+			class="ItemUnit"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Warehouse"
+			column="warehouse_id"
+			class="Warehouse"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

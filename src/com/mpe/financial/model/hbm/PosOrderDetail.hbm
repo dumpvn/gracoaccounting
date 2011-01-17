@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="PosOrderDetail"
+		table="pos_order_detail"
+		batch-size="100"
+	>
+		<composite-id name="Id" class="PosOrderDetailPK">
+			<key-many-to-one
+				name="PosOrder"
+				class="PosOrder"
+				column="pos_order_id"
+			/>
+			<key-many-to-one
+				name="Item"
+				class="Item"
+				column="item_id"
+			/>
+		</composite-id>
+		
+		<property 
+			name="Quantity" 
+			column="quantity" 
+			type="double" 
+			not-null="true"/>
+		<property 
+			name="Price" 
+			column="price" 
+			type="double" 
+			not-null="true"/>
+		<property 
+			name="DiscountProcent" 
+			column="discount_procent" 
+			type="double" 
+			not-null="false"/>
+		<property 
+			name="ExchangeRate" 
+			column="exchange_rate" 
+			type="double" 
+			not-null="true"/>
+		<many-to-one 
+			name="Currency" 
+			column="currency_id" 
+			class="Currency" 
+			lazy="false" 
+			not-null="true"/>
+		<many-to-one 
+			name="ItemUnit" 
+			column="item_unit_id" 
+			class="ItemUnit" 
+			lazy="false" 
+			not-null="false"/>
+
+
+	</class>	
+</hibernate-mapping>

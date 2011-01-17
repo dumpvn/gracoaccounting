@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="PrepaymentToVendor"
+		table="prepayment_to_vendor"
+		batch-size="100"
+	>
+		<id
+			name="Id"
+			type="long"
+			column="prepayment_to_vendor_id"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="PrepaymentDate"
+			column="prepayment_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="Number"
+			column="number"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Status"
+			column="status"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="VendorBillStatus"
+			column="vendor_bill_status"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Posted"
+			column="is_posted"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Reference"
+			column="reference"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="Amount"
+			column="amount"
+			type="double"
+			not-null="false"
+		/>
+		<property
+			name="ExchangeRate"
+			column="exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<many-to-one
+			name="CreateBy"
+			column="create_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+			lazy="false"
+		/>
+		<many-to-one
+			name="ChangeBy"
+			column="change_by"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+			length="19"
+		/>
+		<many-to-one
+			name="Currency"
+			column="currency_id"
+			class="Currency"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Organization"
+			column="organization_id"
+			class="Organization"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Vendor"
+			column="vendor_id"
+			class="Vendors"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="PurchaseOrder"
+			column="purchase_order_id"
+			class="PurchaseOrder"
+			not-null="true"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="BankAccount"
+			column="bank_account_id"
+			class="BankAccount"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Location"
+			column="location_id"
+			class="Location"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Department"
+			column="department_id"
+			class="Department"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="Project"
+			column="project_id"
+			class="Project"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+		
+		<property name="NumberOfDigit" type="int" length="1"
+			formula="(select t0.number_of_digit from organization_setup t0 where t0.organization_id = organization_id)"
+		/>
+	
+
+		<one-to-one name="BankTransaction" cascade="all" class="BankTransaction" property-ref="PrepaymentToVendor" fetch="join" />
+
+		<one-to-one name="Journal" cascade="all" class="Journal" property-ref="PrepaymentToVendor" fetch="join" />
+	
+		<set name="VendorBills" table="vendor_bill_prepayment_to_vendor" inverse="true" lazy="false" batch-size="100">
+			<key column="prepayment_to_vendor_id"/>
+			<composite-element class="VendorBillPrepaymentToVendorFK">
+				<property name="Amount" column="amount" type="double"/>
+				<many-to-one class="VendorBill" column="vendor_bill_id" name="VendorBill" lazy="false"/>
+			</composite-element>
+		</set>
+
+<!--		
+		<property name="VendorBillPaymentAmount" type="double">
+			<formula>
+				(select IFNULL(sum(a.amount),0) from vendor_bill_prepayment_to_vendor a where a.prepayment_to_vendor_id=prepayment_to_vendor_id)
+			</formula>
+		</property>
+-->
+
+	</class>	
+</hibernate-mapping>

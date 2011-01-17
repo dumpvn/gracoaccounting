@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class name="ApAgingReport" mutable="false">
+	
+		<id name="VendorId" type="long"/>
+		<property name="Company" type="string"/>
+		<property name="Address" type="string"/>
+		<property name="City" type="string"/>
+		<property name="PostalCode" type="string"/>
+		<property name="Aging0" type="double"/>
+		<property name="Aging030" type="double"/>
+		<property name="Aging3060" type="double"/>
+		<property name="Aging6090" type="double"/>
+		<property name="Aging90" type="double"/>
+		<property name="NumberOfDigit" type="int"/>
+			
+	</class>	
+</hibernate-mapping>

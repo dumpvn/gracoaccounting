@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="CustomerPaymentDetail"
+		table="customer_payment_invoice"
+		batch-size="100"
+	>
+		
+		<composite-id name="Id" class="CustomerPaymentDetailPK">
+			<key-many-to-one
+				name="CustomerPayment"
+				class="CustomerPayment"
+				column="customer_payment_id"
+			/>
+			<key-property name="identity" column="identity" type="string"/>
+		</composite-id>
+		
+
+		<property
+			name="PaymentAmount"
+			column="payment_amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="InvoiceAmount"
+			column="invoice_amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="InvoiceExchangeRate"
+			column="invoice_exchange_rate"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		
+		<many-to-one name="Invoice" class="Invoice" column="invoice_id" not-null="false" lazy="false"/>
+		<many-to-one name="InvoiceSimple" class="InvoiceSimple" column="invoice_simple_id" not-null="false" lazy="false"/>
+		<many-to-one name="InvoicePolos" class="InvoicePolos" column="invoice_polos_id" not-null="false" lazy="false"/>
+
+	</class>
+		
+</hibernate-mapping>

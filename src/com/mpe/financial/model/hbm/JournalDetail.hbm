@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.mpe.financial.model">
+	<class
+		name="JournalDetail"
+		table="journal_detail"
+		batch-size="100"
+	>
+		<composite-id name="Id" class="JournalDetailPK">
+			<key-many-to-one
+				name="ChartOfAccount"
+				class="ChartOfAccount"
+				column="chart_of_account_id"
+				lazy="false"
+			/>
+			<key-many-to-one
+				name="Journal"
+				class="Journal"
+				column="journal_id"
+				lazy="false"
+			/>
+			<key-property column="chart_of_account_sequence" name="ChartOfAccountSequence" type="int" />
+			
+		</composite-id>
+
+		<property
+			name="Amount"
+			column="amount"
+			type="double"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+		<many-to-one
+			name="Department"
+			column="department_id"
+			class="Department"
+			not-null="false"
+			lazy="false"
+		>
+		</many-to-one>
+
+	</class>	
+</hibernate-mapping>
