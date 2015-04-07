@@ -29,32 +29,32 @@ Purchase Order
 Product Receiving
 -----------------
 
-[2][]
+![alt text][2]
 
 Invoice List
 ------------
 
-[3][]
+![alt text][3]
 
 Item List
 ---------
 
-[4][]
+![alt text][4]
 
 Chart of Account
 ----------------
 
-[5][]
+![alt text][5]
 
 Profit/Loss
 -----------
 
-[6][]
+![alt text][6]
 
 General Ledger
 --------------
 
-[7][]
+![alt text][7]
 
   [1]: http://gracoaccounting.googlecode.com/hg/screenshots/purchase_order.PNG?r=f45d2e021e5bdc79ba16205b31973ba81be0eafb
   [2]: http://gracoaccounting.googlecode.com/hg/screenshots/product_receiving.PNG?r=f45d2e021e5bdc79ba16205b31973ba81be0eafb
