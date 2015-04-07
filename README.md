@@ -2,24 +2,19 @@ Introduction
 ============
 
 GRACO is a web based financial system for steel/metal warehouse and
-workshop.\
-It consists of several modules which are: Account Payable, Account
-Receivable,\
-Inventory and General Ledger.\
-\
-=Features= 1. Database-Independent Access Layer:\
+workshop. It consists of several modules which are: Account Payable, Account
+Receivable, Inventory and General Ledger.
+
+=Features= 
+1. Database-Independent Access Layer:
 All modules work with all SQL-compliance databases since there is a
-clean separation\
-of code between business rules, presentation layer and database layer.\
-2. Access Control List:\
+clean separation of code between business rules, presentation layer and database layer.
+2. Access Control List:
 Every user has its own access control list which defines which menu and
-action he/she\
-can use. A collection of menu and action can be assigned into one role
-and a user can\
-be assigned into several roles. This feature provides a flexible way of
-managing business\
-function as well as security.\
-3. PDF Output:\
+action he/she can use. A collection of menu and action can be assigned into one role
+and a user can be assigned into several roles. This feature provides a flexible way of
+managing business  function as well as security.
+3. PDF Output:
 Report can be printed/saved as PDF file
 
 Screenshots
