@@ -24,7 +24,7 @@ Screenshots
 Purchase Order
 --------------
 
-[1][]
+![alt text][1]
 
 Product Receiving
 -----------------
